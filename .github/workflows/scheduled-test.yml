@@ -4,9 +4,9 @@ on:
   # Manual trigger from the Actions UI:
   workflow_dispatch:
 
-  # Cron schedule: every 30 minutes (for testing)
+  # Cron schedule: every minute (for testing)
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/1 * * * *"
 
 jobs:
   test:
