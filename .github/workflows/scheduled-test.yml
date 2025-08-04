@@ -1,0 +1,30 @@
+name: Scheduled Test Scrape
+
+on:
+  # Manual trigger from the Actions UI:
+  workflow_dispatch:
+
+  # Cron schedule: every 30 minutes (for testing)
+  schedule:
+    - cron: "*/30 * * * *"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          if [ -s requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Run test scraper
+        run: python hello_scraper.py
